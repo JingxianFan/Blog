@@ -6,7 +6,7 @@ a:hover, a:active {
 }
 
 #vm {
-    display: none;
+    display: block;
 }
 #loading {
     margin-bottom: 15px;
