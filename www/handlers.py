@@ -165,6 +165,7 @@ def manage_create_blog():
         'action': '/api/blogs'
     }
 
+
 @asyncio.coroutine
 @get('/api/users')
 def api_get_users():
