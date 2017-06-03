@@ -1,13 +1,28 @@
 /*
  * custom css
  */
+body {
+	font-family: 'Avenir', Helvetica, Arial, sans-serif;
+}
+#panel {
+	font-size: 20px;
+}
+
 a:hover, a:active {
     text-decoration: none;
 }
 
 #vm {
-    display: none;
+   display: none;
+  font-family: 'Avenir', Helvetica, Arial, sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  font-size: 20px;
+  color: #2c3e50;
+  margin-top: 60px;
 }
+
+
 #loading {
     margin-bottom: 15px;
 }
@@ -15,3 +30,47 @@ a:hover, a:active {
     display: none;
     margin-bottom: 15px;
 }
+
+.paginate-list {
+  width: 159px;
+  margin: 0 auto;
+  text-align: left;
+  td {
+    display: block;
+    &:before {
+      content: '⚬ ';
+      font-weight: bold;
+      color: slategray;
+    }
+  }
+}
+ul {
+  list-style-type: none;
+  padding: 0;
+}
+li {
+  display: inline-block;
+  margin: 0 10px;
+}
+.paginate-links {
+   text-align: center;
+}
+.paginate-links.items {
+  user-select: none;
+  a {
+    cursor: pointer;
+  }
+  ul.active a {
+    font-weight: bold;
+  }
+  li.next:before {
+    content: ' | ';
+    margin-right: 13px;
+    color: #ddd;
+  }
+  li.disabled a {
+    color: #ccc;
+    cursor: no-drop;
+  }
+}
+

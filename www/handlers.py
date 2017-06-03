@@ -32,7 +32,7 @@ def check_admin(request):
 def get_page_index(page_str):
     p = 1
     try:
-        p = int(page_str)
+        p = int(str(page_str[0]))
     except ValueError as e:
         pass
     if p < 1:
@@ -84,21 +84,18 @@ def cookie2user(cookie_str):
 @asyncio.coroutine
 @get('/')
 def index(request):
-    summary = 'Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.'
-    blogs = [
-        Blog(id='1', name='Test Blog', summary=summary, created_at=time.time()-120),
-        Blog(id='2', name='Something New', summary=summary, created_at=time.time()-3600),
-        Blog(id='3', name='Learn Swift', summary=summary, created_at=time.time()-7200)
-    ]
+    # summary = 'Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.'
+    blogs = yield from Blog.findAll(orderBy='created_at desc')
     return {
         '__template__': 'blogs.html',
         'blogs': blogs,
         '__user__':request.__user__
     }
 
+
 @asyncio.coroutine
 @get('/blog/{id}')
-def get_blog(id):
+def get_blog(id, request):
     blog = yield from Blog.find(id)
     comments = yield from Comment.findAll('blog_id=?', [id], orderBy='created_at desc')
     for c in comments:
@@ -107,8 +104,10 @@ def get_blog(id):
     return {
         '__template__': 'blog.html',
         'blog': blog,
-        'comments': comments
+        'comments': comments,
+        '__user__':request.__user__
     }
+
 
 @get('/register')
 def register():
@@ -157,6 +156,15 @@ def signout(request):
     logging.info('user signed out.')
     return r
 
+
+
+@get('/manage/blogs')
+def manage_blogs(*, page='1'):
+    return {
+        '__template__': 'manage_blogs.html',
+        'page_index': get_page_index(page)
+    }
+
 @get('/manage/blogs/create')
 def manage_create_blog():
     return {
@@ -204,12 +212,23 @@ def api_register_user(*, email, name, passwd):
     return r
 
 
+@get('/api/blogs')
+def api_blogs(*, page='1'):
+    page_index = get_page_index(page)
+    num = yield from Blog.findNumber('count(id)')
+    p = Page(num, page_index)
+    if num == 0:
+        return dict(page=p, blogs=())
+    blogs = yield from Blog.findAll(orderBy='created_at desc', limit=(p.offset, p.limit))
+    return dict(page=p, blogs=blogs)
+
 
 
 @get('/api/blogs/{id}')
 def api_get_blog(*, id):
     blog = yield from Blog.find(id)
     return blog
+
 
 @post('/api/blogs')
 def api_create_blog(request, *, name, summary, content):

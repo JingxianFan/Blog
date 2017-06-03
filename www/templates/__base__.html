@@ -20,7 +20,7 @@
 <head>
     <meta charset="utf-8" />
     {% block meta %}<!-- block meta  -->{% endblock %}
-    <title>{% block title %} ? {% endblock %} - Awesome Python Webapp</title>
+    <title>{% block title %} ? {% endblock %} - Faye's Blog</title>
     <link rel="stylesheet" href="/static/css/uikit.min.css">
     <link rel="stylesheet" href="/static/css/uikit.gradient.min.css">
     <link rel="stylesheet" href="/static/css/awesome.css" />
@@ -29,6 +29,7 @@
     <script src="/static/js/uikit.min.js"></script>
     <script src="/static/js/sticky.min.js"></script>
     <script src="/static/js/vue.min.js"></script>
+    <script src="https://rawgit.com/TahaSh/vue-paginate/master/dist/vue-paginate.js"></script>
     <script src="/static/js/awesome.js"></script>
     {% block beforehead %}<!-- before head  -->{% endblock %}
 </head>
@@ -39,7 +40,7 @@
             <ul class="uk-navbar-nav">
                 <li data-url="blogs"><a href="/"><i class="uk-icon-home"></i> Blogs</a></li>
                 <li><a target="_blank" href="#><i class="uk-icon-book"></i>Resumes</a></li>
-                <li><a target="_blank" href=#><i class="uk-icon-code"></i>Codes</a></li>
+                <li><a target="_blank" href="https://github.com/JingxianFan/Blog.git"><i class="uk-icon-code"></i>Codes</a></li>
             </ul>
             <div class="uk-navbar-flip">
                 <ul class="uk-navbar-nav">
@@ -74,7 +75,7 @@
                     <a target="_blank" href="https://github.com/JingxianFan" class="uk-icon-button uk-icon-github"></a>
                     <a target="_blank" href="https://www.linkedin.com/in/jingxian-fan-694a6986/" class="uk-icon-button uk-icon-linkedin-square"></a>
                 </p>
-                <p>Powered by <a href="http://faaaaaye.com">Faye's Blog</a>. Copyright &copy; 2017. [<a href="/manage/blogs/create" >Manage</a>]</p>
+                <p>Powered by <a href="http://faaaaaye.com">Faye's Blog</a>. Copyright &copy; 2017. [<a href="/manage/blogs" >Manage</a>]</p>
                 <p><a href="http://www.faaaaaye.com/" target="_blank">www.faaaaaye.com</a>. All rights reserved.</p>
             </div>
 

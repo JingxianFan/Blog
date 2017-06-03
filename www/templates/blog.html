@@ -11,16 +11,25 @@
 
 {% block content %}
 
-    <div class="uk-width-medium-3-4">
-    {% for blog in blogs %}
+    <div class="uk-width-1-1">
         <article class="uk-article">
             <h2><a href="/blog/{{ blog.id }}">{{ blog.name }}</a></h2>
-            <p class="uk-article-meta">Published at{{ blog.created_at|datetime }}</p>
-            <p>{{ blog.summary }}</p>
-            <p><a href="/blog/{{ blog.id }}">Continue Reading <i class="uk-icon-angle-double-right"></i></a></p>
+            <p class="uk-article-meta">Published at  {{ blog.created_at|datetime }}</p>
+            {{ blog.html_content}}
         </article>
+
+        {% for comment in comments %}
+        <article class="uk-article">
+            <div class="user">
+                <img src=comment.user_image/> {{ comment.user_name }}
+            </div>
+            {{ comment.html_content}}
+            <p class="uk-article-meta">Comment at{{ comment.created_at|datetime }}</p>
+
+        </article>
+
+        {% endfor %}
         <hr class="uk-article-divider">
-    {% endfor %}
     </div>
 
 <!--     <div class="uk-width-medium-1-4">
