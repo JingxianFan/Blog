@@ -139,7 +139,7 @@ def datetime_filter(t):
 
 @asyncio.coroutine
 def init(loop):
-	yield from orm.create_pool(loop=loop, host='127.0.0.1', port=3306, user = 'root', password = 'guaiyidian', database = 'awesome')
+	yield from orm.create_pool(loop=loop, host='127.0.0.1', port=3306, user = 'root', password = 'guaiyidian', database = 'Blog')
 	app = web.Application(loop = loop, middlewares=[
 		logger_factory, response_factory, auth_factory
 		])

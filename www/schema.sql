@@ -1,12 +1,12 @@
 -- schema.sql
 
-drop database if exists awesome;
+drop database if exists Blog;
 
-create database awesome;
+create database Blog;
 
-use awesome;
+use Blog;
 
-grant select, insert, update, delete on awesome.* to 'www-data'@'localhost' identified by 'www-data';
+grant select, insert, update, delete on Blog.* to 'www-data'@'localhost' identified by 'www-data';
 
 create table users (
     `id` varchar(50) not null,
