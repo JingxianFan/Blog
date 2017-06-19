@@ -139,7 +139,7 @@ def datetime_filter(t):
 
 @asyncio.coroutine
 def init(loop):
-	yield from orm.create_pool(loop=loop, host='127.0.0.1', port=3306, user = 'root', password = 'guaiyidian', database = 'Blog')
+	yield from orm.create_pool(loop=loop, host='35.166.52.106', port=3306, user = 'root', password = 'guaiyidian', database = 'Blog')
 	app = web.Application(loop = loop, middlewares=[
 		logger_factory, response_factory, auth_factory
 		])
@@ -147,8 +147,8 @@ def init(loop):
 	add_routes(app, 'handlers')
 	add_static(app)
 	# create server with aiohttp's TCP
-	srv = yield from loop.create_server(app.make_handler(), '127.0.0.1', 9000)
-	logging.info('Server started at http://127.0.0.1:9000...')
+	srv = yield from loop.create_server(app.make_handler(), '35.166.52.106', 9000)
+	logging.info('Server started at http://35.166.52.106:9000...')
 	return srv
 
 loop = asyncio.get_event_loop()		# 获取EventLoop
