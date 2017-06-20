@@ -149,8 +149,8 @@ def init(loop):
 	add_routes(app, 'handlers')
 	add_static(app)
 	# create server with aiohttp's TCP
-	srv = yield from loop.create_server(app.make_handler(), '35.166.52.106', 9000)
-	logging.info('Server started at http://35.166.52.106:9000...')
+	srv = yield from loop.create_server(app.make_handler(), '127.0.0.1', 9000)
+	logging.info('Server started at http://127.0.0.1:9000...')
 	return srv
 
 loop = asyncio.get_event_loop()		# 获取EventLoop
