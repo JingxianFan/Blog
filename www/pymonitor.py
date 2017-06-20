@@ -1,4 +1,4 @@
-#!/usr/bin/env python3
+#!/user/bin
 # -*- coding: utf-8 -*-
 
 __author__ = 'Michael Liao'
