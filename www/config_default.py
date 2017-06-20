@@ -5,18 +5,18 @@
 Default configuration
 '''
 
-__author__ = 'JingxianFan'
+__author__ = 'Jingxian Fan'
 
 configs = {
 	'debug': True,
 	'db': {
-		'host': '127.0.0.1',
+		'host': '35.166.52.106',
 		'port': 3306,
 		'user': 'root',
 		'password': 'guaiyidian',
-		'db': 'awesome'
+		'db': 'Blog'
 	},
 	'session': {
-		'secret':'Awesome'
+		'secret':'Blog'
 	}
 }
