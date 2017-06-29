@@ -1,0 +1,47 @@
+{% extends '__base__.html' %}
+
+{% block title %}About Me{% endblock %}
+
+{% block beforehead %}
+
+<script>
+</script>
+
+{% endblock %}
+
+{% block content %}
+
+    <div class="uk-width-1-1">
+        <article class="uk-article">
+            <h2><a href="/blog/{{ blog.id }}">{{ blog.name }}</a></h2>
+            <p class="uk-article-meta">Published at  {{ blog.created_at|datetime }}</p>
+            {{ blog.html_content}}
+        </article>
+
+        {% for comment in comments %}
+        <article class="uk-article">
+            <div class="user">
+                <img src=comment.user_image/> {{ comment.user_name }}
+            </div>
+            {{ comment.html_content}}
+            <p class="uk-article-meta">Comment at{{ comment.created_at|datetime }}</p>
+
+        </article>
+
+        {% endfor %}
+        <hr class="uk-article-divider">
+    </div>
+
+<!--     <div class="uk-width-medium-1-4">
+        <div class="uk-panel uk-panel-header">
+            <h3 class="uk-panel-title">友情链接</h3>
+            <ul class="uk-list uk-list-line">
+                <li><i class="uk-icon-thumbs-o-up"></i> <a target="_blank" href="http://www.liaoxuefeng.com/category/0013738748415562fee26e070fa4664ad926c8e30146c67000">编程</a></li>
+                <li><i class="uk-icon-thumbs-o-up"></i> <a target="_blank" href="http://www.liaoxuefeng.com/category/0013738748248885ddf38d8cd1b4803aa74bcda32f853fd000">读书</a></li>
+                <li><i class="uk-icon-thumbs-o-up"></i> <a target="_blank" href="http://www.liaoxuefeng.com/wiki/001374738125095c955c1e6d8bb493182103fac9270762a000">Python教程</a></li>
+                <li><i class="uk-icon-thumbs-o-up"></i> <a target="_blank" href="http://www.liaoxuefeng.com/wiki/0013739516305929606dd18361248578c67b8067c8c017b000">Git教程</a></li>
+            </ul>
+        </div>
+    </div>
+ -->
+{% endblock %}
