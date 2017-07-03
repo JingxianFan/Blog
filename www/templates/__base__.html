@@ -21,65 +21,153 @@
     <meta charset="utf-8" />
     {% block meta %}<!-- block meta  -->{% endblock %}
     <title>{% block title %} ? {% endblock %} - Faye's Blog</title>
-    <link rel="stylesheet" href="/static/css/uikit.min.css">
-    <link rel="stylesheet" href="/static/css/uikit.gradient.min.css">
-    <link rel="stylesheet" href="/static/css/awesome.css" />
+    <link rel="stylesheet" href="/static/css/uikit.min.css"/>
+    <link rel="stylesheet" href="/static/css/uikit.gradient.min.css"/>
+    <link rel="stylesheet" href="/static/css/blog.css"/>
+    <link rel="stylesheet" href="/static/css/slideshow.min.css" />
     <script src="/static/js/jquery.min.js"></script>
     <script src="/static/js/sha1.min.js"></script>
     <script src="/static/js/uikit.min.js"></script>
-    <script src="/static/js/sticky.min.js"></script>
+    
+    <script src="/static/js/slideshow.min.js"></script> 
+    <script src="/static/js/slideshow-fx.min.js"></script> 
+    <script src="/static/js/blog.js"></script> 
     <script src="/static/js/vue.min.js"></script>
+    <script src="/static/js/sticky.min.js"></script>
     <script src="https://rawgit.com/TahaSh/vue-paginate/master/dist/vue-paginate.js"></script>
-    <script src="/static/js/awesome.js"></script>
+    
     {% block beforehead %}<!-- before head  -->{% endblock %}
 </head>
-<body>
-    <nav class="uk-navbar uk-navbar-attached uk-margin-bottom">
-        <div class="uk-container uk-container-center">
-            <a href="/" class="uk-navbar-brand">Faye's Blog</a>
-            <ul class="uk-navbar-nav">
-                <li data-url="blogs"><a href="/"><i class="uk-icon-home"></i> Blogs</a></li>
-                <li><a target="_blank" href="/static/resume.pdf"><i class="uk-icon-book"></i>About Me</a></li>
-                <li><a target="_blank" href="https://github.com/JingxianFan/Blog.git"><i class="uk-icon-code"></i>Codes</a></li>
-            </ul>
-            <div class="uk-navbar-flip">
-                <ul class="uk-navbar-nav">
-                {% if __user__ %}
-                    <li class="uk-parent">
-                        <a href="#0"><i class="uk-icon-user"></i> {{ __user__.name }}</a></li>
-                    <li><a href="/signout"><i class="uk-icon-sign-out"></i> LogOut</a></li></li>
-                {% else %}
-                    <li><a href="/signin"><i class="uk-icon-sign-in"></i> LogIn</a></li>
-                    <li><a href="/register"><i class="uk-icon-edit"></i> Register</a></li>
-                {% endif %}
-                </ul>
-            </div>
-        </div>
-    </nav>
+<body class="pace-done" >
 
-    <div class="uk-container uk-container-center">
-        <div class="uk-grid">
+
+
+  <aside id="sidebar" class= "uk-width-1-4 uk-hidden-small">
+    <nav class="nav-top">
+      <ul class="uk-grid uk-grid-width-2-3" data-uk-nav>
+      <!-- <a href="/">Faye's Blog</a> -->
+        <li class="uk-push-1-3 uk-width-2-3" ><img src="/static/img/faye.jpg"/></li>
+        <li class="uk-push-1-3 uk-width-2-3" >_______________</li>
+        <li class="uk-push-1-3 uk-width-2-3" >Hello, I'm Faye. </li>
+      </ul>
+    </nav>
+    <div class="nano">
+        <div class = "nano-content" data-uk-nav>
+        <nav id="nav">
+            <ul class="uk-nav" data-uk-nav>
+                <li class= "uk-active" data-url="blogs"><a href="/"><i class="uk-icon-home .uk-icon-medium"></i>Blogs</a></li>
+                <li><a href="/aboutme"><i class="uk-icon-book .uk-icon-medium"></i>AboutMe</a></li>
+                <li><a href="/static/resume.pdf"><i class="uk-icon-file-text .uk-icon-medium"></i>Resume</a></li>
+                <li><a href="https://github.com/JingxianFan/Blog.git"><i class="uk-icon-code .uk-icon-medium"></i>Codes</a></li>
+            </ul>
+            <ul class="uk-nav" data-uk-nav>
+                {% if __user__ %}
+                    <li class="uk-active">
+                        <a href="#0"><i class="uk-icon-user .uk-icon-medium"></i> {{ __user__.name }}</a></li>
+                    <li><a href="/signout"><i class="uk-icon-sign-out .uk-icon-medium"></i> LogOut</a></li></li>
+                {% else %}
+                    <li><a href="/signin"><i class="uk-icon-sign-in .uk-icon-medium"></i> LogIn</a></li>
+                    <li><a href="/register"><i class="uk-icon-edit .uk-icon-medium"></i> Register</a></li>
+                {% endif %}
+            </ul>
+        </nav>
+        </div>
+   </div>
+  </aside>
+
+
+<div id="slide" class="uk-slidenav-position uk-push-1-4 uk-width-3-4" data-uk-slideshow="{kenburns:true, autoplay:true}">
+
+    <ul class="uk-slideshow uk-overlay-active">
+        <li>
+            <img src="/static/img/background/1.jpg" width="960" height="500" alt="">
+             <div class="uk-overlay-panel uk-overlay-background uk-overlay-top uk-overlay-slide-top uk-text-contrast">
+                                            <div>
+                                                <h3>@ Lake Tahoe</h3>
+                                                <p>Last stop of my road trip from West Lafayette to San Francisco. Amazing view. Wish to visit again.</p>
+                                            </div>
+            </div>
+        </li>
+        <li>
+            <img src="/static/img/background/2.jpg" width="960" height="500" alt="">
+             <div class="uk-overlay-panel uk-overlay-background uk-overlay-bottom uk-overlay-slide-top">
+                                            <div>
+                                                <h3>@ Fall of The Great Smoky Mount </h3>
+                                                <p>Taken at last autumn. We travel into the very deep of the Great Smoky Mountain. This fall is hidden in the forest.</p>
+                                            </div>
+            </div>
+        </li>
+        <li>
+            <img src="/static/img/background/3.jpg" width="960" height="500" alt="">
+             <div class="uk-overlay-panel uk-overlay-background uk-overlay-top uk-overlay-slide-top">
+                                            <div>
+                                                <h3>@ Wall on Route 66</h3>
+                                                <p>Photo taken somewhere in Missouri, just next to the world's largest Rocking Chair.</p>
+                                            </div>
+            </div>
+        </li>
+        <li>
+            <img src="/static/img/background/4.jpg" width="960" height="500" alt="">
+             <div class="uk-overlay-panel uk-overlay-background uk-overlay-bottom uk-overlay-slide-bottom">
+                                            <div>
+                                                <h3>@ Wabash Forest</h3>
+                                                <p> It's the last winter before I graudated. This place is along the wabash river. Great weather that day.</p>
+                                            </div>
+            </div>
+        </li>
+       <li>
+            <img src="/static/img/background/5.jpg" width="960" height="500" alt="">
+             <div class="uk-overlay-panel uk-overlay-background uk-overlay-left uk-overlay-slide-left">
+                                            <div>
+                                                <h3>@ West Lafayette</h3>
+                                                <p>It's the first winter that I had at West Lafayette.</p> 
+                                                <p>Really shockingly quiet and cold there.</p>
+                                            </div>
+            </div>
+        </li>
+       <li>
+            <img src="/static/img/background/6.jpg" width="960" height="500" alt="">
+             <div class="uk-overlay-panel uk-overlay-background uk-overlay-top uk-overlay-slide-top">
+                                            <div>
+                                                <h3>@ Zijingang Campus, Zhejiang University, Hangzhou</h3>
+                                                <p>Before I graduated from my bachelor's degree, I had a lot of photos taken in the beautiful campus. I really miss my university, miss hangzhou and miss my friends there.</p>
+                                            </div>
+            </div>
+        </li>
+         </ul>
+         
+         <a href="#" class="uk-slidenav uk-slidenav-contrast uk-slidenav-previous" data-uk-slideshow-item="previous" style="color: rgba(255,255,255,0.4)"></a>
+         <a href="#" class="uk-slidenav uk-slidenav-contrast uk-slidenav-next" data-uk-slideshow-item="next" style="color: rgba(255,255,255,0.4)"></a>
+
+</div>
+
+  <section id="mplaying" class="content uk-push-1-4 uk-width-3-4 uk-height-1-1">
+     <div class=" page-content">
+
+        <div id="blog" class="uk-grid uk-text-large uk-text-contrast">
             <!-- content -->
             {% block content %}
             {% endblock %}
             <!-- // content -->
         </div>
-    </div>
 
-    <div class="uk-margin-large-top" style="background-color:#eee; border-top:1px solid #ccc;">
-        <div class="uk-container uk-container-center uk-text-center">
-            <div class="uk-panel uk-margin-top uk-margin-bottom">
-                <p>
-                    <a target="_blank" href="http://weibo.com/jingxianfan" class="uk-icon-button uk-icon-weibo"></a>
-                    <a target="_blank" href="https://www.facebook.com/Faye.Fan.317" class="uk-icon-button uk-icon-facebook"></a>
-                    <a target="_blank" href="https://github.com/JingxianFan" class="uk-icon-button uk-icon-github"></a>
-                    <a target="_blank" href="https://www.linkedin.com/in/jingxian-fan-694a6986/" class="uk-icon-button uk-icon-linkedin-square"></a>
-                </p>
+            <div class="features uk-grid-width-large-9-10">
+                <ul class="uk-grid uk-grid-width-1-2 uk-grid-width-medium-1-6">
+                    <li><a href="http://weibo.com/jingxianfan" class="uk-icon-hover uk-icon-weibo uk-icon-justify"></a></li>
+                    <li><a href="https://www.facebook.com/Faye.Fan.317" class="uk-icon-hover uk-icon-facebook uk-icon-justify"></a></li>
+                    <li><a href="https://www.instagram.com/faye23333/" class="uk-icon-hover uk-icon-instagram uk-icon-justify"></a></li>
+                    <li><a href="https://github.com/JingxianFan" class="uk-icon-hover uk-icon-github uk-icon-justify"></a></li>
+                    <li><a href="https://www.linkedin.com/in/jingxian-fan-694a6986/" class="uk-icon-hover uk-icon-linkedin-square uk-icon-justify"></a></li>
+                </ul>
+
                 <p>Powered by <a href="http://faaaaaye.com">Faye's Blog</a>. Copyright &copy; 2017. [<a href="/manage/blogs" >Manage</a>]</p>
                 <p><a href="http://www.faaaaaye.com/" target="_blank">www.faaaaaye.com</a>. All rights reserved.</p>
             </div>
 
-        </div>
-    </div>
+      </div>
+  </section>
+
+
+
 </body>
 </html>

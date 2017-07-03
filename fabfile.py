@@ -14,7 +14,9 @@ from fabric.api import *
 
 env.user = 'Faye'
 env.sudo_user = 'root'
-env.hosts = ['35.166.52.106']
+env.hosts = ['ubuntu@34.208.29.17']
+env.key_filename = '~/.ssh/BlogServerKeyPair.pem'
+env.password = 'guaiyidian'
 
 db_user = 'www-data'
 db_password = 'www-data'
@@ -66,7 +68,7 @@ def deploy():
     with cd('%s/%s' % (_REMOTE_BASE_DIR, newdir)):
         sudo('tar -xzvf %s' % _REMOTE_TMP_TAR)
     with cd(_REMOTE_BASE_DIR):
-        sudo('rm -f www')
+        sudo('rm -rf www')
         sudo('ln -s %s www' % newdir)
         sudo('chown www-data:www-data www')
         sudo('chown -R www-data:www-data %s' % newdir)

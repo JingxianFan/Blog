@@ -11,15 +11,15 @@
 
 {% block content %}
 
-    <div class="uk-width-medium-3-4">
+    <div class="uk-width-medium-5-6">
     {% for blog in blogs %}
-        <article class="uk-article">
+        <article  class="uk-article">
             <h2><a href="/blog/{{ blog.id }}">{{ blog.name }}</a></h2>
             <p class="uk-article-meta">Published at{{ blog.created_at|datetime }}</p>
             <p>{{ blog.summary }}</p>
             <p><a href="/blog/{{ blog.id }}">Continue Reading <i class="uk-icon-angle-double-right"></i></a></p>
         </article>
-        <hr class="uk-article-divider">
+        <hr class="uk-article-divider uk-width-1-1">
     {% endfor %}
     </div>
 

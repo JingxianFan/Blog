@@ -121,6 +121,16 @@ def signin():
         '__template__': 'signin.html'
     }
 
+
+@asyncio.coroutine
+@get('/aboutme')
+def aboutme(request):
+    return {
+        '__template__': 'aboutme.html',
+        '__user__':request.__user__
+
+    }
+
 @asyncio.coroutine
 @post('/api/authenticate')
 def authenticate(*, email, passwd):

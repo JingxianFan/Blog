@@ -1,47 +1,123 @@
-{% extends '__base__.html' %}
+<!DOCTYPE html>
+<!--
+{% macro pagination(url, page) %}
+    <ul class="uk-pagination">
+        {% if page.has_previous %}
+            <li><a href="{{ url }}{{ page.page_index - 1 }}"><i class="uk-icon-angle-double-left"></i></a></li>
+        {% else %}
+            <li class="uk-disabled"><span><i class="uk-icon-angle-double-left"></i></span></li>
+        {% endif %}
+            <li class="uk-active"><span>{{ page.page_index }}</span></li>
+        {% if page.has_next %}
+            <li><a href="{{ url }}{{ page.page_index + 1 }}"><i class="uk-icon-angle-double-right"></i></a></li>
+        {% else %}
+            <li class="uk-disabled"><span><i class="uk-icon-angle-double-right"></i></span></li>
+        {% endif %}
+    </ul>
+{% endmacro %}
+-->
+<html>
+<head>
+    <meta charset="utf-8" />
+    {% block meta %}<!-- block meta  -->{% endblock %}
+    <title>About Me - Faye's Blog</title>
+    <link rel="stylesheet" href="/static/css/uikit.min.css"/>
+    <link rel="stylesheet" href="/static/css/uikit.gradient.min.css"/>
+    <link rel="stylesheet" href="/static/css/blog.css"/>
+    <link rel="stylesheet" href="/static/css/slideshow.min.css" />
+    <script src="/static/js/jquery.min.js"></script>
+    <script src="/static/js/sha1.min.js"></script>
+    <script src="/static/js/uikit.min.js"></script>
+    
+    <script src="/static/js/slideshow.min.js"></script> 
+    <script src="/static/js/slideshow-fx.min.js"></script> 
+    <script src="/static/js/blog.js"></script> 
+    <script src="/static/js/vue.min.js"></script>
+    <script src="/static/js/sticky.min.js"></script>
+    <script src="https://rawgit.com/TahaSh/vue-paginate/master/dist/vue-paginate.js"></script>
+    
+    {% block beforehead %}<!-- before head  -->{% endblock %}
+</head>
+<body class="pace-done" >
 
-{% block title %}About Me{% endblock %}
 
-{% block beforehead %}
 
-<script>
-</script>
-
-{% endblock %}
-
-{% block content %}
-
-    <div class="uk-width-1-1">
-        <article class="uk-article">
-            <h2><a href="/blog/{{ blog.id }}">{{ blog.name }}</a></h2>
-            <p class="uk-article-meta">Published at  {{ blog.created_at|datetime }}</p>
-            {{ blog.html_content}}
-        </article>
-
-        {% for comment in comments %}
-        <article class="uk-article">
-            <div class="user">
-                <img src=comment.user_image/> {{ comment.user_name }}
-            </div>
-            {{ comment.html_content}}
-            <p class="uk-article-meta">Comment at{{ comment.created_at|datetime }}</p>
-
-        </article>
-
-        {% endfor %}
-        <hr class="uk-article-divider">
-    </div>
-
-<!--     <div class="uk-width-medium-1-4">
-        <div class="uk-panel uk-panel-header">
-            <h3 class="uk-panel-title">友情链接</h3>
-            <ul class="uk-list uk-list-line">
-                <li><i class="uk-icon-thumbs-o-up"></i> <a target="_blank" href="http://www.liaoxuefeng.com/category/0013738748415562fee26e070fa4664ad926c8e30146c67000">编程</a></li>
-                <li><i class="uk-icon-thumbs-o-up"></i> <a target="_blank" href="http://www.liaoxuefeng.com/category/0013738748248885ddf38d8cd1b4803aa74bcda32f853fd000">读书</a></li>
-                <li><i class="uk-icon-thumbs-o-up"></i> <a target="_blank" href="http://www.liaoxuefeng.com/wiki/001374738125095c955c1e6d8bb493182103fac9270762a000">Python教程</a></li>
-                <li><i class="uk-icon-thumbs-o-up"></i> <a target="_blank" href="http://www.liaoxuefeng.com/wiki/0013739516305929606dd18361248578c67b8067c8c017b000">Git教程</a></li>
+  <aside id="sidebar" class= "uk-width-1-4 uk-hidden-small">
+    <nav class="nav-top">
+      <ul class="uk-grid uk-grid-width-2-3" data-uk-nav>
+      <!-- <a href="/">Faye's Blog</a> -->
+        <li class="uk-push-1-3 uk-width-2-3" ><img src="/static/img/faye.jpg"/></li>
+        <li class="uk-push-1-3 uk-width-2-3" >_______________</li>
+        <li class="uk-push-1-3 uk-width-2-3" >Hello, I'm Faye. </li>
+      </ul>
+    </nav>
+    <div class="nano">
+        <div class = "nano-content" data-uk-nav>
+        <nav id="nav">
+            <ul class="uk-nav" data-uk-nav>
+                <li class= "uk-active" data-url="blogs"><a href="/"><i class="uk-icon-home .uk-icon-medium"></i> Blogs</a></li>
+                <li><a href="/aboutme"><i class="uk-icon-book .uk-icon-medium"></i>AboutMe</a></li>
+                <li><a href="/static/resume.pdf"><i class="uk-icon-file-text .uk-icon-medium"></i>Resume</a></li>
+                <li><a href="https://github.com/JingxianFan/Blog.git"><i class="uk-icon-code .uk-icon-medium"></i>Codes</a></li>
             </ul>
+            <ul class="uk-nav" data-uk-nav>
+                {% if __user__ %}
+                    <li class="uk-active">
+                        <a href="#0"><i class="uk-icon-user .uk-icon-medium"></i> {{ __user__.name }}</a></li>
+                    <li><a href="/signout"><i class="uk-icon-sign-out .uk-icon-medium"></i> LogOut</a></li></li>
+                {% else %}
+                    <li><a href="/signin"><i class="uk-icon-sign-in .uk-icon-medium"></i> LogIn</a></li>
+                    <li><a href="/register"><i class="uk-icon-edit .uk-icon-medium"></i> Register</a></li>
+                {% endif %}
+            </ul>
+        </nav>
         </div>
+   </div>
+  </aside>
+
+
+  <section id="mplaying" class="content uk-push-1-4 uk-width-3-4 uk-height-1-1">
+     <div class=" page-content">
+
+    <div class="uk-container-center uk-width-1-1">
+        <article class="uk-article uk-width-5-6 .uk-text-contrast">
+        <h1 class="uk-article-title .uk-text-right" style="color: #F5F5DC">Jingxian(Faye) Fan</h1>
+        <p class="uk-article-meta "></p>
+         <p class="uk-article-lead " style="color: white; opacity: 0.5">Born in 1993, Pisces</p>
+         <p class="uk-article-lead " style="color: white; opacity: 0.5">Raised in Hangzhou, Zhejiang, China</p>
+         <p class="uk-article-lead " style="color: white; opacity: 0.5">Bachelor of Engineering, Zhejiang University</p>
+         <p class="uk-article-lead " style="color: white; opacity: 0.5">Master of Engineering, Purdue University</p>
+         <p class="uk-article-lead " style="color: white; opacity: 0.5">Now Living in San Francisco</p>
+         <p class="uk-article-lead " style="color: white; opacity: 0.5">Coder/ Foodie/ Traveler </p>
+         <p class="uk-article-lead " style="color: white; opacity: 0.5"><i class="uk-icon-envelope"></i> jingxian0317@gmail.com</p>
+         <hr class="uk-article-divider uk-width-1-1" style="opacity: 0.6">
+         <p class="uk-clearfix" style="color: grey;">
+            <img class="uk-align-medium-right" src="/static/img/me.png" alt="" style="width: 380px">
+            I just graduated from Purdue University with my Master of theis degree. And I have moved from West Lafayette to San Francisco, seeking for full-time Software Development Engineer position in Bay Area. This blog is a production of my full-stack web app development and is still under construction. If you are interested about me, please send me an email.
+            </p>
+         <hr class="uk-article-divider uk-width-1-1">
+         
+        </article> 
     </div>
- -->
-{% endblock %}
+
+
+            <div class="features uk-grid-width-large-9-10">
+                <ul class="uk-grid uk-grid-width-1-2 uk-grid-width-medium-1-6">
+                    <li><a href="http://weibo.com/jingxianfan" class="uk-icon-hover uk-icon-weibo uk-icon-justify"></a></li>
+                    <li><a href="https://www.facebook.com/Faye.Fan.317" class="uk-icon-hover uk-icon-facebook uk-icon-justify"></a></li>
+                    <li><a href="https://www.instagram.com/faye23333/" class="uk-icon-hover uk-icon-instagram uk-icon-justify"></a></li>
+                    <li><a href="https://github.com/JingxianFan" class="uk-icon-hover uk-icon-github uk-icon-justify"></a></li>
+                    <li><a href="https://www.linkedin.com/in/jingxian-fan-694a6986/" class="uk-icon-hover uk-icon-linkedin-square uk-icon-justify"></a></li>
+                </ul>
+
+                <p>Powered by <a href="http://faaaaaye.com">Faye's Blog</a>. Copyright &copy; 2017. </p>
+                <p><a href="http://www.faaaaaye.com/" target="_blank">www.faaaaaye.com</a>. All rights reserved.</p>
+            </div>
+
+      </div>
+  </section>
+
+
+
+</body>
+</html>

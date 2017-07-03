@@ -1,16 +1,16 @@
 <!DOCTYPE html>
-<html class="uk-height-1-1">
+<html class="uk-height-1-1" style="background-color: #202020">
 <head>
     <meta charset="utf-8" />
     <title>Log In - Faye's Blog System</title>
     <link rel="stylesheet" href="/static/css/uikit.min.css">
     <link rel="stylesheet" href="/static/css/uikit.gradient.min.css">  
-    <link rel="stylesheet" href="/static/css/awesome.css">  
+    <link rel="stylesheet" href="/static/css/blog.css">  
     <script src="/static/js/jquery.min.js"></script>
     <script src="/static/js/sha1.min.js"></script>
     <script src="/static/js/uikit.min.js"></script>
     <script src="/static/js/vue.min.js"></script>
-    <script src="/static/js/awesome.js"></script>
+    <script src="/static/js/blog.js"></script>
     <script>
 
 $(function() {
@@ -43,11 +43,11 @@ $(function() {
 
     </script>
 </head>
-<body class="uk-height-1-1">
-    <div class="uk-vertical-align uk-text-center uk-height-1-1">
-        <div class="uk-vertical-align-middle" style="width: 320px">
-            <p><a href="/" class="uk-icon-button"><i class="uk-icon-html5"></i></a> <a href="/">    Faye's Blog</a></p>
-            <form id="vm" v-on:submit="submit" class="uk-panel uk-panel-box uk-form">
+<body class="uk-height-1-1" style="background-color: #202020">
+    <div class="uk-vertical-align uk-text-center uk-height-1-1" style="background-color: #202020">
+        <div class="uk-vertical-align-middle" style="width: 350px">
+            <h2 class=".uk-text-large .uk-text-bold" style="padding-bottom: 30px"><a href="/"><i class="uk-icon-user .uk-icon-large"></i></a> <a href="/">    Faye's Blog</a></h2>
+            <form id="vm" v-on:submit="submit" class="uk-panel uk-panel-box uk-form" >
                 <div class="uk-alert uk-alert-danger uk-hidden"></div>
                 <div class="uk-form-row">
                 <input v-model="email" name="email" type="text" placeholder="Email" maxlength="50" class="uk-width-1-1 uk-form-large">

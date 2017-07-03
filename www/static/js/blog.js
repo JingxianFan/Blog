@@ -1,4 +1,4 @@
-// awesome.js
+// blog.js
 
 // patch for lower-version IE:
 
@@ -347,6 +347,7 @@ function postJSON(url, data, callback) {
     _httpJSON('POST', url, data, callback);
 }
 
+
 // extends Vue:
 
 if (typeof(Vue)!=='undefined') {
@@ -383,6 +384,7 @@ function redirect(url) {
 }
 
 // init:
+
 
 function _bindSubmit($form) {
     $form.submit(function (event) {

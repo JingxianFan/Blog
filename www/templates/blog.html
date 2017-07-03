@@ -11,11 +11,18 @@
 
 {% block content %}
 
-    <div class="uk-width-1-1">
-        <article class="uk-article">
+    <div class="uk-width-3-4">
+        <div class="uk-width-1-1">
+          <ul id= "exit" class="uk-nav uk-width-1-1" data-uk-nav>
+            <li class="uk-contrast"><a href="/"><i class="uk-icon-hover uk-icon-arrow-circle-left"></i> Go Back</a></li>
+          </ul>
+        </div>
+
+
+        <article id="singleblog" class="uk-article">
             <h2><a href="/blog/{{ blog.id }}">{{ blog.name }}</a></h2>
             <p class="uk-article-meta">Published at  {{ blog.created_at|datetime }}</p>
-            {{ blog.html_content}}
+            <p class="uk-article-lead" style="color: white; opacity: 0.8">{{ blog.html_content}}</p>
         </article>
 
         {% for comment in comments %}
@@ -29,7 +36,7 @@
         </article>
 
         {% endfor %}
-        <hr class="uk-article-divider">
+        <hr class="uk-article-divider uk-width-1-1">
     </div>
 
 <!--     <div class="uk-width-medium-1-4">
